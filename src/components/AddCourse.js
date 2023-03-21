@@ -48,7 +48,7 @@ class AddCourse extends Component {
                   <Button color="secondary" onClick={this.handleClose}>Cancel</Button>
                   <Button id="Add" color="primary" onClick={this.handleAdd}>Add</Button>
                 </DialogActions>
-              </Dialog>      
+              </Dialog>
           </div>
       ); 
     }

@@ -35,7 +35,7 @@ class SchedList extends Component {
     console.log("SchedList.fetchCourses");
     const token = Cookies.get('XSRF-TOKEN');
     
-    fetch(`${SERVER_URL}/schedule?year=${this.props.location.year}&semester=${this.props.location.semester}`, 
+    fetch(`${SERVER_URL}schedule?year=${this.props.location.year}&semester=${this.props.location.semester}`, 
       {  
         method: 'GET', 
         headers: { 'X-XSRF-TOKEN': token }
@@ -68,7 +68,7 @@ class SchedList extends Component {
     if (window.confirm('Are you sure you want to drop the course?')) {
       const token = Cookies.get('XSRF-TOKEN');
       
-      fetch(`${SERVER_URL}/schedule/${id}`,
+      fetch(`${SERVER_URL}schedule/${id}`,
         {
           method: 'DELETE',
           headers: { 'X-XSRF-TOKEN': token }
@@ -98,7 +98,7 @@ class SchedList extends Component {
   addCourse = (course) => {
     const token = Cookies.get('XSRF-TOKEN');
  
-    fetch(`${SERVER_URL}/schedule`,
+    fetch(`${SERVER_URL}schedule`,
       { 
         method: 'POST', 
         headers: { 'Content-Type': 'application/json',
@@ -162,10 +162,7 @@ class SchedList extends Component {
             </Toolbar>
           </AppBar>
           <div className="App">
-            <div style={{width:'100%'}}>
-                For DEBUG:  display state.
-                {JSON.stringify(this.state)}
-            </div>
+            
             <Grid container>
               <Grid item>
 			    <ButtonGroup>

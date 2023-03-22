@@ -12,7 +12,7 @@ import TextField from '@mui/material/TextField';
 class AddStudent extends Component {
       constructor(props) {
       super(props);
-      this.state = {open: false, course:{ } };
+      this.state = {open: false, student:{status: 0} };
     };
     
     handleClickOpen = () => {
@@ -23,12 +23,14 @@ class AddStudent extends Component {
       this.setState( {open:false} );
     };
 
-    handleChangeName = (event) => {
-      this.setState({student:{student_name: event.target.value}});
-    }
-
-    handleChangeEmail = (event) => {
-      this.setState({student:{student_email: event.target.value}});
+    handleChange = (event) => {
+      const {name,value} = event.target;
+      this.setState((prevState) => ({
+        student:{
+          ...prevState.student,
+          [name]:value
+        }
+      }));
     }
 
   // Save course and close modal form
@@ -46,8 +48,8 @@ class AddStudent extends Component {
         <Dialog open={this.state.open} onClose={this.handleClose}>
           <DialogTitle>Add Student</DialogTitle>
           <DialogContent  style={{paddingTop: 20}} >
-            <TextField autoFocus fullWidth label="student_name" name="student_name" onChange={this.handleChangeName}  />
-            <TextField autoFocus fullWidth label="student_email" name="student_email" onChange={this.handleChangeEmail}  /> 
+            <TextField autoFocus fullWidth label="student_name" name="student_name" onChange={this.handleChange}  />
+            <TextField autoFocus fullWidth label="student_email" name="student_email" onChange={this.handleChange}  /> 
           </DialogContent>
           <DialogActions>
             <Button color="secondary" onClick={this.handleClose}>Cancel</Button>
@@ -61,7 +63,7 @@ class AddStudent extends Component {
 
 // required property:  addCourse is a function to call to perform the Add action
 AddStudent.propTypes = {
-  AddStudent : PropTypes.func.isRequired
+  addStudent : PropTypes.func.isRequired
 }
 
 export default AddStudent;
